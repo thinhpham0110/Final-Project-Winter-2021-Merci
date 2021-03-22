@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <%- include("./include/head") %>
+                <link rel="stylesheet" type="text/css" href="/style/checkout.css" />
+        </head>
+        <body>
+                <%- include("./include/navbar") %>
+                <main class="checkout__container container__main" id="layout">
+                        <div class="checkout__wrapper">
+                                <table class="checkout__table">
+                                        <caption class="checkout__title">
+                                                Checkout Cart
+                                        </caption>
+                                        <tr>
+                                                <th>Item</th>
+                                                <th>Size</th>
+                                                <th>Color</th>
+                                                <th>Price</th>
+                                                <th></th>
+                                        </tr>
+                                        <% if (!item.length) { %>
+                                        <tr>
+                                                <td>Empty</td>
+                                        </tr>
+                                        <% } %> 
+                                        
+                                        <% for(let i=0; i < item.length; i++) { %>
+                                                <tr>
+                                                        <td><%= item[i].name %></td>
+                                                <td><%= item[i].size %></td>
+                                                <td><%= item[i].color %></td>
+                                                <td>$<%= item[i].price %></td>
+                                                
+                                                <td>
+                                                        <button class="checkout__delete" value="<%= item[i]._id  %>">
+                                                                <img src="/asset/images/delete.svg" alt="delete" />
+                                                        </button>
+                                                </td>
+                                        </tr>
+                                        <% } %>
+                                        
+                                        <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="checkout__total">$<%= item.reduce((total,cur) => {return total + Number(cur.price)},0 ) %></td>
+                                                <td></td>
+                                        </tr>
+                                        <% if (item.length) { %>
+                                                <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                <button class="btn checkout__btn" id="btn-checkout">Order Now</button>
+                                                        </td>
+                                                        <td></td>
+                                                </tr>
+                                        <% } %> 
+                                </table>
+                        </form>
+                </main>
+                
+                <div class="checkout__form fade-in" id="info-form">
+                        <form  class="checkout__form--order" >
+                                <h1 class="form__title">MERCI</h1>
+                                <button class="checkout__order__quit" id="info-quit">
+                                        <img src="/asset/images/delete.svg" alt="delete">
+                                </button>
+                                <p class="form__title--sub">
+                                        CHECKOUT FORM <br />
+                                        THANK FOR YOUR ORDER
+                                </p>
+                                <p class="form__success" id="msg"></p>
+                                <div class="form__group">
+                                        <input class="form__input" name="name" type="text" placeholder="Full name" id="name" />
+                                        <p class="form__error" id="name:error"></p>
+                                </div>
+                                <div class="form__group">
+                                        <input class="form__input" name="address" type="text" placeholder="Address" id="address" />
+                                        <p class="form__error" id="address:error"></p>
+                                </div>
+                                <div class="form__group">
+                                        <input class="form__input" name="email" type="text" placeholder="Email" id="email" />
+                                        <p class="form__error" id="email:error"></p>
+                                </div>
+                                <div class="form__group">
+                                        <input class="form__input" name="phone" type="text" placeholder="Phone" id="phone" />
+                                        <p class="form__error" id="email:phone"></p>
+                                </div>
+                             
+                                <button class="btn">Order Now</button>
+                        </form>
+                </div>
+                <%- include("./include/footer") %>
+                <%- include("./include/script") %>
+                <script src="/script/navbar.js"></script>
+                <script src="/script/checkout.js"></script>
+        </body>
+</html>

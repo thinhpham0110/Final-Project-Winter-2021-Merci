@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <%- include("./include/head") %>
+                <link rel="stylesheet" type="text/css" href="/style/show.css" />
+        </head>
+        <body>
+                <%- include("./include/navbar") %>
+                <main class="form__layout container__main" id="layout">
+                        <div class="show__wrapper">
+                                <div class="show__photo">
+                                        <img src="<%= item.imageUrl %> " alt="<%= item.name  %> " />
+                                </div>
+
+                                <div class="show__info">
+                                        <h2 class="show__title"><%= item.name %></h2>
+                                        <h3 class="show__price">$ <%= item.price %></h3>
+                                        <div class="show__selector">
+                                                <select class="show__filter show__filter__selector" id="size">
+                                                      
+                                                        <% for(let i=0; i < item.size.length; i++) { %>
+                                                        <option value=<%= item.size[i] %> <%= i===0 ? "selected" :null %>> <%= item.size[i] %> </option>
+
+                                                        <% } %>
+                                                </select>
+                                                <select class="show__filter show__filter__selector" id="colorInput">
+                                                        <% for(let i=0; i < item.color.length; i++) { %>
+                
+                                                        <option value=<%= item.color[i] %> <%= i===0 ? "selected" :null %> > <%= item.color[i]  %> </option>
+                                                        <% } %> 
+                                                </select>
+                                        </div>
+                                        <button class="btn" id="add-to-bag" value="<%= item._id  %> ">Add To Bag</button>
+                                </div>
+                                <div class="show__photo">
+                                        <img src="<%= item.imageUrl %> " alt="<%= item.name  %> " />
+                                </div>
+                        </div>
+                        <div  class="show__recommend">
+                                <h1>Recommend For You</h1>
+                        </div>
+                         <div class="store__container" id="store">
+                    
+                                <% for(var i=0; i<(recommend.length); i++) {%>
+                                <a class="item__wrapper" href="<%=url+"/show/"+recommend[i]._id  %> ">
+                                        <div class="item--top">
+                                                <img src="/asset/images/heart.svg" alt="love" />
+                                        </div>
+                                        <img class="item__img" src="<%= recommend[i].imageUrl  %> " alt="<%= recommend[i].name  %> " />
+                                        <h2 class="item__name"><%= recommend[i].name %></h2>
+                                        <p class="item__price">$ <%= String( recommend[i].price) %></p>
+                                </a>
+                                <% } %>
+                        </div> 
+                </main>
+                    <%- include("./include/footer") %>
+                 <%- include("./include/script") %>
+                <script src="/script/navbar.js"></script>
+                <script src="/script/show.js"></script>
+        </body>
+</html>

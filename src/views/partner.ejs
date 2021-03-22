@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <%- include("./include/head") %>
+                <link rel="stylesheet" type="text/css" href="/style/contact.css" />
+        </head>
+        <body>
+                <%- include("./include/navbar") %>
+                <main class="form__layout container__main fade-in" id="layout">
+                        <form class="form__wrapper" id="contact-form" method="post" onsubmit="return submitUserForm();">
+                                <h1 class="form__title">MERCI</h1>
+                                <p class="form__title--sub">BECOME MERCI PARTNER</p>
+                                <p class="form__success" id="msg"></p>
+                                <div class="form__group">
+                                        <input class="form__input" name="name" type="text" placeholder="Full name" id="name" />
+                                        <p class="form__error" id="name:error"></p>
+                                </div>
+                                <div class="form__group">
+                                        <input class="form__input" name="email" type="text" placeholder="Email" id="email" />
+                                        <p class="form__error" id="email:error"></p>
+                                </div>
+                                <div class="form__group">
+                                        <p class="form__error" id="comment:error"></p>
+                                        <textarea class="form__textarea" placeholder="About yourself" id="comment"></textarea>
+                                </div>
+                                <div class="g-recaptcha" data-sitekey="6Lejm34aAAAAAMRoR9fkJ5iz0YQokQEOfHyVCOuG" data-callback="verifyCaptcha"></div>
+                                <div id="g-recaptcha-error"></div>
+                                <button class="btn">Submit</button>
+                        </form>
+                </main>
+                <%- include("./include/script") %> <%- include("./include/footer") %>
+                <script src="/script/navbar.js"></script>
+                <script src="/script/contactus.js"></script>
+        </body>
+</html>

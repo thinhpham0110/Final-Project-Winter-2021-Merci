@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <%- include("./include/head") %>
+                <link rel="stylesheet" type="text/css" href="/style/store.css" />
+        </head>
+        <body>
+                <%- include("./include/navbar") %>
+
+                <main class="container__main fade-in" id="layout">
+                        <div class="jumbotron">
+                                <img src="/asset/images/jumbotron.jpg" alt="jumbotron" />
+                        </div>
+                        <form class="store__filter" id="filter">
+                                <input class="store__filter__box" placeholder="Item name" id="search" />
+                                <select class="store__filter__box store__filter__box__selector" id="sort">
+                                        <option selected>Sort By</option>
+                                        <option value="sortBy=price&sortOrder=1">Price (low -> high)</option>
+                                        <option value="sortBy=price&sortOrder=-1">Price (high -> low)</option>
+                                        <option value="sortBy=name&sortOrder=1">Name (A -> Z)</option>
+                                        <option value="sortBy=name&sortOrder=-1">Name (Z -> A)</option>
+                                </select>
+                                <button class="store__filter__box store__filter__btn" type="submit">Search</button>
+                        </form>
+                        <% if (!data.length) {%>
+                        <p class="store__notfound">Item Is Not Found</p>
+                        <% } %>
+                        <div class="store__container" id="store">
+                                <% for(var i=0; i<(data.length); i++) {%>
+
+                                 <a class="item__wrapper" href="<%=url+"/show/"+data[i]._id %>">
+                                        <div class="item--top">
+                                                <img src="/asset/images/heart.svg" alt="love" />
+                                        </div>
+                                        <img class="item__img" src="<%= data[i].imageUrl  %> " alt="<%= data[i].name  %> " />
+                                        <h1 class="item__name"><%= data[i].name %></h1>
+                                        <p class="item__price">$ <%= String( data[i].price) %></p>
+                                </a>
+                                <% } %>
+                        </div>
+                </main>
+                    <%- include("./include/footer") %>
+                <%- include("./include/script") %>
+                <script src="/script/navbar.js"></script>
+                <script src="/script/store.js"></script>
+        </body>
+</html>
